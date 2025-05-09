@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "axios"; 
 import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:8080/api/";
@@ -44,6 +44,20 @@ const getLaboratorios = () => {
   return axios.get(API_URL + "laboratorios");
 };
 
+// Añadir la función que falta para crear laboratorios
+const createLaboratorio = (data) => {
+  return axios.post(API_URL + "laboratorios", data, { headers: authHeader() });
+};
+
+// Añadir también estas funciones para completar las operaciones CRUD de laboratorios
+const updateLaboratorio = (id, data) => {
+  return axios.put(API_URL + `laboratorios/${id}`, data, { headers: authHeader() });
+};
+
+const deleteLaboratorio = (id) => {
+  return axios.delete(API_URL + `laboratorios/${id}`, { headers: authHeader() });
+};
+
 const createOrdenCompra = (detalles) => {
   return axios.post(API_URL + "ordenes", { detalles }, { headers: authHeader() });
 };
@@ -63,6 +77,9 @@ const UserService = {
   updateMedicamento,
   deleteMedicamento,
   getLaboratorios,
+  createLaboratorio,  // Añadir esta función
+  updateLaboratorio,  // Opcional, para completar el CRUD
+  deleteLaboratorio,  // Opcional, para completar el CRUD
   createOrdenCompra,
   getOrdenes
 };
